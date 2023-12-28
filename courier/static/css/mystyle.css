@@ -1,0 +1,26 @@
+.navbar-brand{
+    color : white !important;
+    font-weight:bold
+}
+
+.bg-custom {
+	background: linear-gradient(45deg, #993876 32%, #9e21f3 100%);
+}
+
+
+.nav-link{
+    color : white !important;
+}
+
+.nav-link:hover{
+    background-color : black !important;
+    border-radius : 15px;
+}
+
+.frontimage{
+    width:100%;
+}
+
+#login{
+    opacity : 0.9;
+}

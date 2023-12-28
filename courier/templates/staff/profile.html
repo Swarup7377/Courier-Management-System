@@ -1,0 +1,88 @@
+{% extends 'staffNavbar.html' %}
+{% block main %}
+{% load static %}
+
+<section class="content">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Profile</h1>
+                </div>
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'staffdashboard' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Profile</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Update Profile</h3>
+                    </div>
+
+                    <!-- form start -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Staff Name</label>
+                                <input type="text" name="firstName" value="{{staff.user.first_name}}" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Staff Mobile Number</label>
+                                <input type="text" name="StaffMobilenumber" value="{{staff.StaffMobilenumber}}" class="form-control" maxlength="10">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Branch Name</label>
+                                <input type="text" name="branch" value="{{staff.branch.BranchName}}" class="form-control" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Staff Email ID</label>
+                                <input type="email" name="emailid" value="{{staff.user.username}}" class="form-control" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Staff Registration Date</label>
+                                <input type="text" name="StaffRegdate" value="{{staff.StaffRegdate}}" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if error == "no" %}
+<script>
+    alert('Your Profile has been Updated');
+    window.location=('{% url 'staffdashboard' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong , try again later');
+</script>
+{% endif %}
+
+{% endblock %}

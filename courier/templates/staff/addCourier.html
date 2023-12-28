@@ -1,0 +1,185 @@
+{% extends 'staffNavbar.html' %}
+{% block main %}
+{% load static %}
+
+<section class="content">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Courier Detail</h1>
+                </div>
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'staffdashboard' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Add Courier</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h5 class="header-title m-t-0 m-b-30 text-danger">Sender Detail</h5>
+                            <hr>
+                            <form method="post">
+                                {% csrf_token %}
+                                <fieldset class="form-group">
+                                    <label>Sender Branch</label>
+                                    <select name='SenderBranch' class="form-control white_bg" readonly>
+
+                                        <option value="{{staff.branch.id}}">{{staff.branch.BranchName}}</option>
+
+                                    </select>
+                                </fieldset>
+
+                                <fieldset class="form-group">
+                                    <label>Sender Name</label>
+                                    <input type="text" name="SenderName" class="form-control" placeholder="Enter Sender Name" required>
+                                </fieldset>
+
+                                <fieldset class="form-group">
+                                    <label>Sender Contact Number</label>
+                                    <input type="text" name="SenderContactnumber" class="form-control" placeholder="Enter Sender Mobile Number" maxlength="10" required>
+                                </fieldset>
+
+                                <fieldset class="form-group">
+                                    <label>Sender Address</label>
+                                    <textarea name="SenderAddress" class="form-control" rows="3" placeholder="Enter Sender Address" required></textarea>
+                                </fieldset>
+
+                                <fieldset class="form-group">
+                                    <label>Sender City</label>
+                                    <input type="text" name="SenderCity" class="form-control" placeholder="Enter Sender City" required>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label>Sender State</label>
+                                    <input type="text" name="SenderState" class="form-control" placeholder="Enter Sender State" required>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label>Sender Pincode</label>
+                                    <input type="text" name="SenderPincode" class="form-control" placeholder="Enter Sender Pincode" maxlength="6" required>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label>Sender Country</label>
+                                    <input type="text" name="SenderCountry" class="form-control" placeholder="Enter Sender Country" required>
+                                </fieldset>
+                        </div><!-- end col -->
+
+                        <div class="col-xl-12 m-t-sm-40">
+                            <hr>
+                            <h5 class="header-title m-t-0 m-b-30 text-danger">Recipient Detail</h5>
+                            <hr>
+                            <fieldset>
+                                <label>Recipient Name</label>
+                                <input type="text" name="RecipientName" class="form-control" placeholder="Enter Recipient Name" required>
+                            </fieldset>
+
+                            <fieldset>
+                                <label>Recipient Contact Number</label>
+                                <input type="text" name="RecipientContactnumber" class="form-control" placeholder="Enter Recipient Contact Number" maxlength="10" required>
+                            </fieldset>
+
+                            <fieldset>
+                                <label>Recipient Address</label>
+                                <textarea name="RecipientAddress" class="form-control" rows="3" placeholder="Enter Recipient Address" required></textarea>
+                            </fieldset>
+
+                            <fieldset>
+                                <label>Recipient City</label>
+                                <input type="text" name="RecipientCity" class="form-control" placeholder="Enter Recipient City" required>
+                            </fieldset>
+                            <fieldset>
+                                <label>Recipient State</label>
+                                <input type="text" name="RecipientState" class="form-control" placeholder="Enter Recipient State" required>
+                            </fieldset>
+                            <fieldset>
+                                <label>Recipient Pincode</label>
+                                <input type="text" name="RecipientPincode" class="form-control" placeholder="Enter Recipient Pincode" required maxlength="6">
+                            </fieldset>
+
+                            <fieldset class="form-group">
+                                <label>Recipient Country</label>
+                                <input type="text" name="RecipientCountry" class="form-control" placeholder="Enter Recipient Country" required>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-box">
+                    <hr>
+                    <h5 class="header-title m-t-0 m-b-30 text-danger">Courier Detail</h5>
+                    <hr>
+                    <div class="form-group row">
+                        <label>Courier Description</label>
+                        <div class="col-10">
+                            <textarea name="CourierDes" class="form-control" placeholder="Enter Courier Description" required rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label>Parcel weight(in kg)</label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" name="ParcelWeight" placeholder="for example:3kg or .3kg" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label>Parcel Dimension(in inch)</label>
+                        <div class="col-2">
+                            <input type="text" name="ParcelDimensionlen" class="form-control" placeholder="Enter Parcel Length" required>
+                        </div>
+                        X
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="ParcelDimensionwidth" placeholder="Enter Parcel Width" required>
+                        </div>
+                        X
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="ParcelDimensionheight" placeholder="Enter Parcel Height" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label>Parcel Price</label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" name="ParcelPrice" placeholder="Enter Parcel Price" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-10">
+                            <p style="text-align: center;">
+                                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                            </p>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if error == "no" %}
+<script>
+        alert('Courier Detail has been added.');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+        alert('Something went wrong, Try Again...');
+</script>
+{% endif %}
+
+{% endblock %}

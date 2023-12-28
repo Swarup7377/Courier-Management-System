@@ -1,0 +1,153 @@
+{% include 'navbar.html' %}
+{% load static %}
+
+<style type="text/css">
+.zoom {
+	transition: transform .1s; /* Animation */
+}
+.zoom:hover {
+	transform: scale(1.2); /* (150% zoom)*/
+}
+
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Courier Management System</title>
+</head>
+<body style="background-color: #dbe2da;">
+<img src="{% static 'images/courier1.jpg' %}" style="width:100%; height:450px; border: 4px solid #573170;">
+
+<div class="container mt-5">
+    <form method="post">
+        {% csrf_token %}
+        <div class="card my-4" style="border : 2px ridge green">
+            <h5 class="card-header text-info">Tracking/Reference Number</h5>
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" name="searchdata" class="form-control" placeholder="Enter Tracking/Reference No."
+                           required>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search" style="height: 25px"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% if courier %}
+    <div class="row text-left">
+
+        <div class="col-lg-12">
+            <h4 class="text-center">Tracking/Reference Id "{{sd}}" Details</h4>
+            <hr>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-4 zoom">
+            <div class="card h-100" style="height : 250px ; border : 1px ridge red; background-color: #a7ffeb;">
+                <div class="card-body">
+                    <h4 class="card-title text-center text-danger" style="font-family:'Monotype corsiva'; font-size:30px">Sender</h4>
+                    <hr/>
+                    <table border="1" width="100%" style="text-align: center;">
+
+                        <tr>
+                            <th> Name</th>
+                            <td>{{courier.SenderName}}</td>
+                        </tr>
+                        <tr>
+                            <th> City</th>
+                            <td>{{courier.SenderCity}}</td>
+                        </tr>
+                        <tr>
+                            <th> State</th>
+                            <td>{{courier.SenderState}}</td>
+                        </tr>
+                        <tr>
+                            <th>Pincode</th>
+                            <td>{{courier.SenderPincode}}</td>
+                        </tr>
+                        <tr>
+                            <th>Country</th>
+                            <td>{{courier.SenderCountry}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-4 zoom">
+            <div class="card h-100" style="height : 250px ; border : 1px ridge red; background-color: #a7ffeb;">
+                <div class="card-body">
+                    <h4 class="card-title text-center text-danger" style="font-family:'Monotype corsiva'; font-size:30px">Recipient</h4>
+                    <hr/>
+                    <table border="1" width="100%" style="text-align: center;">
+                        <tr>
+                            <th> Name</th>
+                            <td>{{courier.RecipientName}}</td>
+                        </tr>
+                        <tr>
+                            <th> City</th>
+                            <td>{{courier.RecipientCity}}</td>
+                        </tr>
+                        <tr>
+                            <th> State</th>
+                            <td>{{courier.RecipientState}}</td>
+                        </tr>
+                        <tr>
+                            <th>Pincode</th>
+                            <td>{{courier.RecipientPincode}}</td>
+                        </tr>
+                        <tr>
+                            <th>Country</th>
+                            <td>{{courier.RecipientCountry}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {% if reportcount != 0 %}
+        <div class="col-lg-12 col-md-6 mb-4 zoom">
+            <div class="card h-100" style="height : 250px ; border : 1px ridge red; background-color: #a7ffeb;">
+                <div class="card-body">
+                    <h4 class="card-title text-center text-danger" style="font-family:'Monotype corsiva'; font-size:30px">Tracking History</h4>
+                    <hr/>
+                    <table border="1" width="100%" style="text-align: center;">
+                        <tr>
+                            <th>Remark</th>
+                            <th>Status</th>
+                            <th>Date/Time</th>
+                        </tr>
+                        {% for i in report1 %}
+                        <tr>
+                            <td>{{i.remark}}</td>
+                            <td>{{i.status}}</td>
+                            <td>{{i.StatusDate}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <h4 class="text-center text-danger">Not Shipped yet </h4>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+<div class="container-fluid" style=" height : 50px ;">
+    <br>
+    <p class="text-center text-danger">
+        <script>
+				document.write(new Date().getFullYear());
+
+        </script> &copy; Courier Management System
+    </p>
+</div>
+<br>
+</body>
+</html>

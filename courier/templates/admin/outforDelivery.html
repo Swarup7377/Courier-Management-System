@@ -1,0 +1,72 @@
+{% extends 'adminNavbar.html' %}
+{% block main %}
+{% load static %}
+
+<section class="content">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">View Out for Delivery Courier</h1>
+                </div>
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Courier</li>
+                        <li class="breadcrumb-item active">Out for Delivery</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">View Out for Delivery Courier</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Reference Number</th>
+                                <th>Sender Name</th>
+                                <th>Recipient Name</th>
+                                <th>Courier Date</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for i in courier %}
+                            <tr>
+                                <td># {{forloop.counter}}</td>
+                                <td>{{i.RefNumber}}</td>
+                                <td>{{i.SenderName}}</td>
+                                <td>{{i.RecipientName}}</td>
+                                <td>{{i.CourierDate}}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="{% url 'viewCourierDetails' i.id %}"><i class="fa fa-eye"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

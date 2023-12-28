@@ -1,0 +1,183 @@
+{% extends 'adminNavbar.html' %}
+{% block main %}
+{% load static %}
+
+<section class="content">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">View Courier Details</h1>
+                </div>
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Courier Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">View Courier Details <span style="color: yellow;">(Reference No. {{courierdtls.RefNumber}}) [Courier Date - {{courierdtls.CourierDate}}] </span></h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <tr>
+                                        <th style="text-align: center" colspan="2">Sender Details</th>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Sender Branch</th>
+                                        <td>{{courierdtls.SenderBranch}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sender Name</th>
+                                        <td>{{courierdtls.SenderName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sender Contact Number</th>
+                                        <td>{{courierdtls.SenderContactnumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sender Address</th>
+                                        <td>{{courierdtls.SenderAddress}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sender City</th>
+                                        <td>{{courierdtls.SenderCity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sender State</th>
+                                        <td>{{courierdtls.SenderState}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sender Pincode</th>
+                                        <td>{{courierdtls.SenderPincode}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sender Country</th>
+                                        <td>{{courierdtls.SenderCountry}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="col-6">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <tr>
+                                        <th style="text-align: center" colspan="2">Recipient Details</th>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Recipient Name</th>
+                                        <td>{{courierdtls.RecipientName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Recipient Contact Number</th>
+                                        <td>{{courierdtls.RecipientContactnumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Recipient Address</th>
+                                        <td>{{courierdtls.RecipientAddress}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Recipient City</th>
+                                        <td>{{courierdtls.RecipientCity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Recipient State</th>
+                                        <td>{{courierdtls.RecipientState}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Recipient Pincode</th>
+                                        <td>{{courierdtls.RecipientPincode}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Recipient Country</th>
+                                        <td>{{courierdtls.RecipientCountry}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <table id="example1" class="table table-bordered table-striped">
+                            <tr>
+                                <th>Courier Description</th>
+                                <td>{{courierdtls.CourierDes}}</td>
+                            </tr>
+                            <tr>
+                                <th>Parcel Weight</th>
+                                <td>{{courierdtls.ParcelWeight}}</td>
+                            </tr>
+                            <tr>
+                                <th>Parcel Dimension Length</th>
+                                <td>{{courierdtls.ParcelDimensionlen}}</td>
+                            </tr>
+                            <tr>
+                                <th>Parcel Dimension Width</th>
+                                <td>{{courierdtls.ParcelDimensionwidth}}</td>
+                            </tr>
+                            <tr>
+                                <th>Parcel Dimension Height</th>
+                                <td>{{courierdtls.ParcelDimensionheight}}</td>
+                            </tr>
+                            <tr>
+                                <th>Parcel Price</th>
+                                <td>{{courierdtls.ParcelPrice}}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Status</th>
+                                {% if courierdtls.Status == None %}
+                                <td>Not Update Yet</td>
+                                {% else %}
+                                <td>{{courierdtls.Status}}</td>
+                                {% endif %}
+                            </tr>
+                        </table>
+
+                        <hr>
+                        {% if reportcount != 0 %}
+                        <table id="example1" class="table table-bordered table-striped">
+                            <tr align="center" style="color: red;">
+                                <th colspan="4">Courier History</th>
+                            </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>Remark</th>
+                                <th>Status</th>
+                                <th>Time</th>
+                            </tr>
+
+                            {% for i in report1 %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.remark}}</td>
+                                <td>{{i.status}}</td>
+                                <td>{{i.StatusDate}}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+{% endblock %}

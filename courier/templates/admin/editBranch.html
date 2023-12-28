@@ -1,0 +1,104 @@
+{% extends 'adminNavbar.html' %}
+{% block main %}
+{% load static %}
+
+<section class="content">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Update Branch Detail</h1>
+                </div>
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Branch</li>
+                        <li class="breadcrumb-item active">Manage Branch</li>
+                        <li class="breadcrumb-item active">Edit Branch</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Update Branch</h3>
+                    </div>
+
+                    <!-- form start -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Branch Name</label>
+                                <input type="text" name="BranchName" class="form-control" value="{{branch.BranchName}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Branch Contact Number</label>
+                                <input type="text" name="BranchContactnumber" class="form-control" value="{{branch.BranchContactnumber}}" maxlength="10">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Branch Email</label>
+                                <input type="email" name="BranchEmail" class="form-control" value="{{branch.BranchEmail}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Branch Address</label>
+                                <input type="text" name="BranchAddress" class="form-control" value="{{branch.BranchAddress}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Branch City</label>
+                                <input type="text" name="BranchCity" class="form-control" value="{{branch.BranchCity}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Branch State</label>
+                                <input type="text" name="BranchState" class="form-control" value="{{branch.BranchState}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Branch Pincode</label>
+                                <input type="text" name="BranchPincode" class="form-control" value="{{branch.BranchPincode}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Branch Country</label>
+                                <input type="text" name="BranchCountry" class="form-control" value="{{branch.BranchCountry}}">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+{% if error == "no" %}
+<script>
+        alert('Branch has been Updated.');
+        window.location=('{% url 'manageBranch' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+        alert('Something went wrong, Try Again...');
+</script>
+{% endif %}
+
+{% endblock %}
